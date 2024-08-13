@@ -1,4 +1,4 @@
-let cadastroJaRealizado = false;
+
 beforeEach(() => {
     // Visitar a página de cadastro antes de cada teste
     cy.visit('https://adopet-frontend-cypress.vercel.app/mensagem')
@@ -6,8 +6,27 @@ beforeEach(() => {
 
   
   describe('Formulário de mensagem', () => {
-    it('Preencher o formulário de mensagem com mais de 500 caracteres no campo “Mensagem”', () => {
+
+    it('Preencher o formulário de mensagens com dados válidos', () => {
       
+        //realizando login
+        cy.get('#email').type('julio@gmail.com')
+        cy.get('#pass').type('SuaSenhaAqui1')
+        cy.get('[data-test="submit-button"]').click()
+  
+        cy.get(':nth-child(1) > .card__contact').click()
+  
+        //Preenchendo o formulário com dados validos
+        cy.get('#name').type('julio Santos')
+        cy.get('#phone').type('619967896590')
+        cy.get('#petName').type('Dunga')
+        cy.get('#msg').type('Gostaria de saber se todas as vacinas foram aplicadas no animal')
+        cy.get('[data-test="submit-button"]').click()
+  
+        
+      })
+  
+    it('Preencher o formulário de mensagem com mais de 500 caracteres no campo “Mensagem”', () => {
         //realizando login
         cy.get('#email').type('julio@gmail.com')
         cy.get('#pass').type('SuaSenhaAqui1')
